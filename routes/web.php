@@ -56,11 +56,33 @@ Route::group(['prefix'=>'admin','middleware'=>'adminlogin'],function(){
 });
  Route::group(['prefix'=>'slide'],function(){
   Route::get('danhsach','Slidercontroller@getdanhsach');
+  Route::get('home','Slidercontroller@home');
   Route::get('sua/{id}','Slidercontroller@getsua');
   Route::get('sua/{id}','Slidercontroller@getsua');
   Route::get('them','Slidercontroller@getthem');
   Route::post('them','Slidercontroller@postthem');
   Route::get('xoa/{id}','Slidercontroller@getxoa');
+});
+  Route::group(['prefix'=>'front'],function(){
+  Route::get('danhsach','Pagecontroller@getdanhsach');
+  Route::get('message','Pagecontroller@getmessage');
+
+});
+  Route::group(['prefix'=>'khoa'],function(){
+  Route::get('danhsach','Khoacontroller@getdanhsach');
+  Route::get('sua/{id}','Khoacontroller@getsua');
+  Route::get('sua/{id}','Khoacontroller@getsua');
+  Route::get('them','Khoacontroller@getthem');
+  Route::post('them','Khoacontroller@postthem');
+  Route::get('xoa/{id}','Khoacontroller@getxoa');
+});
+    Route::group(['prefix'=>'bacsi'],function(){
+  Route::get('danhsach','Bacsicontroller@getdanhsach');
+  Route::get('sua/{id}','Bacsicontroller@getsua');
+  Route::get('sua/{id}','Bacsicontroller@getsua');
+  Route::get('them','Bacsicontroller@getthem');
+  Route::post('them','Bacsicontroller@postthem');
+  Route::get('xoa/{id}','Bacsicontroller@getxoa');
 });
  Route::group(['prefix'=>'user'],function(){
   Route::get('danhsach','Usercontroller@getdanhsach');
@@ -80,6 +102,7 @@ Route::group(['prefix'=>'admin','middleware'=>'adminlogin'],function(){
 
 });
 Route::get('trangchu','Pagecontroller@trangchu');
+Route::post('message','Pagecontroller@postmessage');
 Route::get('home','Pagecontroller@home');
 Route::get('lienhe','Pagecontroller@lienhe');
 Route::get('loaitin/{id}','Pagecontroller@loaitin');

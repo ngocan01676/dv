@@ -32,11 +32,18 @@ class AppServiceProvider extends ServiceProvider
             $view->with('user_login',Auth::user());
            }
         });
+         view()->composer('admin.layout.menu',function($view)
+        {
+           if(Auth::check())
+           {
+            $view->with('user_login',Auth::user());
+           }
+        });
         // view()->composer('layout.slide',function($view){
         //     $slide=Slide::all();
         //      $view->with('slide',$slide);
         // });
-       view()->composer('layout.header',function($view){
+       view()->composer('layouts.header',function($view){
         if(Auth::check())
         {
             $view->with('nguoidung',Auth::user());

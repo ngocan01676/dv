@@ -8,6 +8,8 @@ use App\Slide;
 use App\Loaitin;
 use App\Tintuc;
 use App\Comment;
+use App\Khoa;
+use App\Message;
 use Auth;
 
 class Pagecontroller extends Controller
@@ -19,6 +21,8 @@ class Pagecontroller extends Controller
     {
     	$theloai=Theloai::all();
     	$slide=Slide::all();
+      $khoa=Khoa::all();
+       view()->share('khoa',$khoa);
        view()->share('theloai',$theloai);
        view()->share('slide',$slide);
        if(Auth::check())
@@ -33,7 +37,8 @@ function trangchu()
 	return view('page.trangchu');
 }
 function home()
-{
+{ 
+  $slide=Slide::all();
   
   return view('pages.home');
 }
@@ -102,4 +107,30 @@ public function postcmt(Request $r)
 
 
 }
+ public function getdanhsach()
+ {  
+     
+     return view('admin/front/danhsach');
+
+ }
+  public function postmessage(Request $r)
+ {  
+    $m=new Message();
+    $m->name=$r->name;
+    $m->email=$r->email;
+    $m->sdt=$r->sdt;
+    $m->noidung=$r->noidung;
+    $m->ngaykham=$r->ngaykham;
+    $m->save();
+    return  redirect('home')->with('thongbao','Susscess');
+
+
+ }
+   public function getmessage()
+ {  
+    
+   $message=Message::all();
+    return view('admin/front/message',['message'=>$message]);
+
+ }
 }

@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
-        <h1 class="page-header">Slide
+        <h1 class="page-header">Khoa
           <small>Add</small>
         </h1>
       </div>
@@ -21,12 +21,21 @@
         @if(session('thongbao'))
         <div class="alert alert-success">{{session('thongbao')}}</div>
         @endif
-        <form action="admin/slide/them" method="POST" enctype="multipart/form-data">
+        <form action="admin/bacsi/them" method="POST" enctype="multipart/form-data">
          <input type="hidden" name="_token" value="{{csrf_token()}}"/>
 
 
-
          <div class="form-group">
+          <label>Loại Tin</label>
+          <select class="form-control" name="txtkhoa" id="loaitin">
+            @foreach($khoa as $lt)
+            <option value="{{$lt->id}}">{{$lt->Name}}</option>
+            @endforeach
+
+
+          </select>
+        </div>
+        <div class="form-group">
           <label>Tên</label>
           <input class="form-control" name="txtten" placeholder="Please" />
         </div>
@@ -35,10 +44,10 @@
           <textarea name="txtnoidung" id="demo" class="form-control ckeditor"></textarea>
         </div>
         <div class="form-group">
-          <label>Link</label>
+          <label>Chuyên Khoa</label>
           <input class="form-control" name="txtlink" placeholder="Please" />
         </div>
-    
+
 
 
         <div class="form-group">
@@ -46,8 +55,8 @@
           <input type="file" name="txthinh">
         </div>
 
-      
-        <button type="submit" class="btn btn-default">Add</button>
+
+        <button type="submit" class="btn btn-default"> Add</button>
         <button type="reset" class="btn btn-default">Reset</button>
         <form>
         </div>

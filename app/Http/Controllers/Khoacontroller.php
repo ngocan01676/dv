@@ -3,24 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Slide;
+use App\Khoa;
 
 
-class Slidercontroller extends Controller
+class Khoacontroller extends Controller
 {
 	public function getdanhsach()
 	{   
-		$slider=Slide::all();
-		return view('admin/slide/danhsach',['slide'=>$slider]);
+		$khoa=Khoa::all();
+		return view('admin/khoa/danhsach',['khoa'=>$khoa]);
 	}
-        public function home()
-    {   
-        
-        return view('admin/slide/homes');
-    }
 	public function getthem()
 	{
-		return view('admin/slide/them');
+		return view('admin/khoa/them');
 	}
 	public function postthem(Request $r)
 	{  
@@ -32,24 +27,24 @@ class Slidercontroller extends Controller
         	],
         	[
 
-                'txtteb.required'=>'không được để trống tên',
+                'txtten.required'=>'không được để trống tên',
                 'txtnoidung.required'=>'không được để trống nội dung'
 
         	]);
-        $slide=new Slide;
-        $slide->Ten=$r->txtten;
-        $slide->NoiDung=$r->txtnoidung;
-        $slide->Link=$r->txtlink;
+        $khoa=new Khoa;
+        $khoa->Name=$r->txtten;
+        $khoa->noidung=$r->txtnoidung;
+        $khoa->Names=$r->txtlink;
         if($r->hasFile('txthinh'))
         	{
         		$file=$r->file('txthinh');
         		$name=$file->getClientOriginalName();
         		$r_name=str_random(4)."_".$name;
-        		$file->move('upload/slide',$r_name);
-        		$slide->Hinh=$r_name;
+        		$file->move('upload/khoa',$r_name);
+        		$khoa->image=$r_name;
         	}
-        	$slide->save();
-             return redirect('admin/slide/danhsach');
+        	$khoa->save();
+             return redirect('admin/khoa/danhsach');
 
 
 	}

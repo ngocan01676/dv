@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Slide
+                <h1 class="page-header">bacsi
                     <small>List</small>
                 </h1>
             </div>
@@ -21,24 +21,26 @@
                     <th>Tên</th>    
                     <td>Hình</td>
                     <td>Nội dung</td>
-                    <td>Link</td>
+                    <td>Chuyên khoa</td>
                     <td>XÓA</td>
                     <td>Sửa</td>
                 </tr>
             </thead>
             <tbody>
-                @foreach($slide as $slide)
+                @foreach($bacsi as $bacsi)
                 <tr class="odd gradeX" align="center">
-                    <td>{{$slide->id}}</td>
-                    <td>{{$slide->Ten}}</td>
-                    <td><img src="upload/slide/{{$slide->Hinh}}" width="600px" height="200px" alt=""></td>
+                    <td>{{$bacsi->id}}</td>
+                    <td>{{$bacsi->name}}</td>
+                    
+                    <td><img src="upload/khoa/{{$bacsi->image}}" width="600px" height="200px" alt=""></td>
 
-                    <td>{{$slide->NoiDung}}</td>
-                    <td>{{$slide->link}}</td>
+                    <td>{{$bacsi->noidung}}</td>
+                    <td>{{$bacsi->chuyenkhoa}}</td>
+                    
 
 
-                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/slide/xoa/{{$slide->id}}"> Delete</a></td>
-                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/slide/sua/{{$slide->id}}">Edit</a></td>
+                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/bacsi/xoa/{{$bacsi->id}}"> Delete</a></td>
+                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/bacsi/sua/{{$bacsi->id}}">Edit</a></td>
                 </tr>
                 @endforeach
             </tbody>

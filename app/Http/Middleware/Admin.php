@@ -19,7 +19,7 @@ class Admin
         if(Auth::check())
         {  
             $u=Auth::user();
-            if($u->quyen==1)
+            if($u->quyen==1||$u->quyen==0)
             {
                  return $next($request);
              }else{

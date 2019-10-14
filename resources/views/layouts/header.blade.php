@@ -35,10 +35,10 @@
 </div>
 <div id="owl-demo" class="owl-carousel owl-theme">
 
-  <div class="item"><img src="source/image/a2.jpg"  alt="The Last of us"></div>
-  <div class="item"><img src="source/image/a1.png" alt="GTA V"></div>
-  
+ @foreach($slide as $slide)
+ <div class="item"><img src="upload/slide/{{$slide->Hinh}}"  alt="The Last of us"></div>
 
+ @endforeach
 </div>
 <div class="content text-center">
   <h1>CÁC KHOA VÀ CHUYÊN KHOA</h1>
@@ -63,40 +63,17 @@
 <section class="tt">
   <div class="container">
     <div class="row">
+      @foreach($khoa as $khoa)
       <div class="col-md-3">
         <div class="image">
-          <img src="source/image/k1.jpg" alt="" class="img-responsive">
+          <img src="upload/khoa/{{$khoa->image}}" alt="" class="img-responsive">
           <div class="tittle">
-            <p>KHOA NỘI - NHI</p>
+            <p>{{$khoa->Names}}</p>
           </div>
         </div>
 
       </div>
-      <div class="col-md-3">
-        <div class="image">
-          <img src="source/image/k2.jpg" alt="" class="img-responsive">
-          <div class="tittle">
-           <p>KHOA NGOẠI -GMHS</p>
-         </div>
-       </div>
-
-     </div>
-     <div class="col-md-3">
-      <div class="image">
-        <img src="source/image/k4.jpg" alt="" class="img-responsive">
-        <div class="tittle">
-          <p>KHOA XÉT-NGHIỆM</p>
-        </div>
-      </div>
-
-    </div>
-    <div class="col-md-3">
-      <div class="image">
-        <img src="source/image/k5.jpg" alt="" class="img-responsive">
-        <div class="tittle">
-          <p>KHOA CĐCH-TDCN</p>
-        </div>
-      </div>
+      @endforeach
 
     </div>
   </div>
@@ -119,18 +96,23 @@
           </div>
         </div>
         <div class="col-md-5">
-          <form action="">
+          <form action="message"  method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
             <p>ĐẶT LỊCH KHÁM NGAY</p>
             <div class="form-group">
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Họ tên">
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Họ tên" name="name">
             </div>
             <div class="form-group">
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Điện thoại">
+              <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Điện thoại" name="sdt">
             </div>
             <div class="form-group">
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="">Ngày Khám</label>
 
               <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                <input class="form-control" size="35" type="text" value="" readonly>
+                <input class="form-control" size="35" type="text" value="" readonly name="ngaykham">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
               </div>
@@ -140,11 +122,16 @@
 
 
             <div class="form-group">
-              <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Lời nhắn
+              <textarea name="noidung" class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Lời nhắn
               "></textarea>
             </div>
             <div class="form-group">
               <button class="btn btn-primary">Đăng Ký</button>
+            </div>
+            <div class="form-group">
+              @if(session('thongbao'))
+              <div class="alert alert-success">{{session('thongbao')}}</div>
+              @endif
             </div>
           </form>
         </div>
@@ -152,3 +139,4 @@
     </div>
   </div>
 </section>
+<?php

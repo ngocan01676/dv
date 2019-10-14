@@ -31,10 +31,14 @@ class Usercontroller extends Controller
      		]);
        
           $mang=array('email'=>$r->email,'password'=>$r->password);
+          // echo $mang['email'];
+          // die();
          //['email'=>$r->email,'password'=>$r->password]
            if(Auth::attempt($mang))
-           {
-           	return redirect('admin/theloai/danhsach');
+           {  
+            
+              return redirect('admin/slide/home');
+     
            }else{
            	return redirect('admin/dangnhap')->with('thongbao','đăng nhập không thành công');
            }
